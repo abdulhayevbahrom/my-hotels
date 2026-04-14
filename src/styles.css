@@ -23,6 +23,10 @@ body,
   min-height: 100%;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: "Plus Jakarta Sans", "Segoe UI", sans-serif;
   color: var(--ink);
@@ -33,13 +37,20 @@ body {
 }
 
 .site-shell {
-  width: min(1220px, calc(100vw - 32px));
-  margin: 14px auto 24px;
-  border: 1px solid var(--line);
-  border-radius: 24px;
+  width: 100%;
+  min-height: 100vh;
   background: rgba(255, 252, 245, 0.78);
   backdrop-filter: blur(4px);
-  box-shadow: var(--shadow);
+}
+
+.content-shell {
+  width: 100%;
+  max-width: 1440px;
+  min-height: 100vh;
+  margin: 0 auto;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
   overflow: hidden;
 }
 
@@ -47,13 +58,19 @@ body {
   position: sticky;
   top: 0;
   z-index: 30;
+  background: rgba(255, 250, 242, 0.92);
+  border-bottom: 1px solid var(--line);
+}
+
+.topbar-inner {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
   padding: 14px 24px;
-  background: rgba(255, 250, 242, 0.92);
-  border-bottom: 1px solid var(--line);
 }
 
 .brand {
@@ -63,15 +80,18 @@ body {
   color: var(--ink);
   text-decoration: none;
   line-height: 1;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
 }
 
 .brand span {
-  margin-left: 6px;
   font-size: 12px;
-  letter-spacing: 1.8px;
-  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-transform: none;
   color: var(--gold);
   font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 700;
 }
 
 .topnav {
@@ -89,6 +109,10 @@ body {
 
 .section {
   padding: 64px 28px;
+}
+
+.section[id] {
+  scroll-margin-top: 84px;
 }
 
 .eyebrow {
@@ -155,14 +179,17 @@ p {
 }
 
 .btn {
+  border: 0;
   border-radius: 12px;
   padding: 11px 18px;
   font-size: 14px;
   font-weight: 700;
+  font-family: inherit;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
   transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
 }
 
@@ -381,61 +408,93 @@ p {
   line-height: 1.5;
 }
 
-.pricing {
+.clients {
   border-top: 1px solid var(--line);
 }
 
-.pricing-grid {
-  margin-top: 22px;
+.clients-text {
+  margin-top: 10px;
+  color: #60758a;
+  max-width: 620px;
+}
+
+.clients-summary {
+  margin-top: 16px;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
 }
 
-.price-card {
-  border-radius: 16px;
-  border: 1px solid #deceb2;
-  background: #fffdf8;
-  padding: 18px;
-  display: grid;
-  gap: 10px;
+.clients-summary div {
+  border-radius: 14px;
+  border: 1px solid #d8c8aa;
+  background: linear-gradient(155deg, #fff7e9 0%, #f3e8d3 100%);
+  padding: 14px;
 }
 
-.price-card.featured {
-  border-color: #2f786f;
-  box-shadow: 0 14px 28px rgba(29, 82, 75, 0.19);
-}
-
-.plan-badge {
-  width: fit-content;
-  border-radius: 999px;
-  padding: 5px 10px;
-  font-size: 12px;
-  font-weight: 800;
-  color: #41576f;
-  background: #f4ebdd;
-}
-
-.plan-price {
-  font-family: "Space Grotesk", sans-serif;
-  font-size: 37px;
-  color: #17354d;
+.clients-summary strong {
+  font-size: 24px;
   line-height: 1;
+  color: #1f5f6b;
 }
 
-.plan-price span {
-  font-family: "Plus Jakarta Sans", sans-serif;
+.clients-summary span {
+  display: block;
+  margin-top: 4px;
+  color: #60758a;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.clients-grid {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.hotel-card {
+  border-radius: 14px;
+  border: 1px solid #e0d1b6;
+  background: #fffefb;
+  padding: 14px;
+}
+
+.hotel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.hotel-head h3 {
+  font-size: 18px;
+}
+
+.hotel-badge {
+  border-radius: 999px;
+  padding: 4px 10px;
   font-size: 12px;
-  color: #6c8095;
-  margin-left: 4px;
+  font-weight: 700;
+  color: #266d5e;
+  background: #dff4ed;
+  border: 1px solid #acd8c9;
 }
 
-.price-card ul {
-  margin: 0;
-  padding-left: 18px;
-  color: #5f7286;
-  line-height: 1.6;
-  min-height: 120px;
+.hotel-card p {
+  margin-top: 8px;
+  color: #5f7388;
+  font-size: 14px;
+}
+
+.hotel-meta {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  color: #425b74;
+  font-size: 13px;
+  font-weight: 600;
 }
 
 .faq {
@@ -487,6 +546,25 @@ p {
   line-height: 1.55;
 }
 
+.contact-copy {
+  display: grid;
+  align-content: start;
+}
+
+.contact-benefits {
+  margin: 12px 0 0;
+  padding-left: 18px;
+  color: #415b75;
+  line-height: 1.6;
+}
+
+.contact-channels {
+  margin-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
 .lead-form {
   display: grid;
   gap: 10px;
@@ -511,6 +589,13 @@ p {
 
 .lead-form input:focus {
   outline: 2px solid rgba(31, 95, 107, 0.25);
+}
+
+.form-hint {
+  color: #2c5e4a;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
 }
 
 .footer {
@@ -564,7 +649,7 @@ p {
 
 .modules-grid .reveal,
 .cases-grid .reveal,
-.pricing-grid .reveal,
+.clients-grid .reveal,
 .faq-list .reveal,
 .ps-grid .reveal {
   animation-delay: 0.14s;
@@ -597,7 +682,8 @@ p {
   .ps-grid,
   .modules-grid,
   .cases-grid,
-  .pricing-grid {
+  .clients-grid,
+  .clients-summary {
     grid-template-columns: 1fr 1fr;
   }
 
@@ -607,13 +693,13 @@ p {
 }
 
 @media (max-width: 700px) {
-  .site-shell {
-    width: calc(100vw - 14px);
-    margin: 7px auto 14px;
-    border-radius: 16px;
+  .content-shell {
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
   }
 
-  .topbar {
+  .topbar-inner {
     padding: 11px 14px;
   }
 
@@ -629,7 +715,8 @@ p {
   .ps-grid,
   .modules-grid,
   .cases-grid,
-  .pricing-grid {
+  .clients-grid,
+  .clients-summary {
     grid-template-columns: 1fr;
   }
 
@@ -650,12 +737,12 @@ p {
 }
 
 @media (max-width: 480px) {
-  .site-shell {
-    width: calc(100vw - 8px);
-    border-radius: 12px;
+  .content-shell {
+    width: 100%;
+    border-radius: 0;
   }
 
-  .topbar {
+  .topbar-inner {
     padding: 10px 10px;
   }
 
@@ -712,17 +799,13 @@ p {
     padding: 28px 8px;
   }
 
-  .plan-price {
-    font-size: 31px;
-  }
-
   .meta-card strong {
     font-size: 17px;
   }
 }
 
 @media (max-width: 350px) {
-  .topbar {
+  .topbar-inner {
     padding: 8px 8px;
   }
 
@@ -730,7 +813,7 @@ p {
     font-size: 16px;
   }
 
-  .site-shell {
+  .content-shell {
     width: 100vw;
     border-radius: 0;
     margin: 0;
