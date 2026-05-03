@@ -76,6 +76,8 @@ const installedHotels = [
 ];
 
 const CONTACT_STORAGE_KEY = "my-hotels-contact-form";
+const TELEGRAM_PHONE = "+998939119572";
+const TELEGRAM_CHAT_LINK = `https://t.me/${TELEGRAM_PHONE}`;
 
 function App() {
   const [formData, setFormData] = useState(() => {
@@ -114,7 +116,7 @@ function App() {
   );
 
   const telegramUrl = useMemo(
-    () => `https://t.me/oydinplaza?text=${encodeURIComponent(telegramText)}`,
+    () => `${TELEGRAM_CHAT_LINK}?text=${encodeURIComponent(telegramText)}`,
     [telegramText],
   );
 
@@ -127,7 +129,7 @@ function App() {
     event.preventDefault();
     window.open(telegramUrl, "_blank", "noopener,noreferrer");
     setSubmitHint(
-      "Telegram ochildi. Xabar matni avtomatik to'ldirildi, yuborishni tasdiqlang.",
+      "Telegram chat ochildi. Xabar matnini yuborishni tasdiqlang.",
     );
   };
 
@@ -364,7 +366,7 @@ function App() {
                   </a>
                   <a
                     className="btn btn-ghost"
-                    href="https://t.me/+998939119572"
+                    href={TELEGRAM_CHAT_LINK}
                     target="_blank"
                     rel="noreferrer"
                   >
