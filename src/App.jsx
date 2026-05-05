@@ -73,6 +73,7 @@ const cases = [
 
 const installedHotels = [
   { name: "Oydin Plaza", city: "Namangan", rooms: 68, since: "2026" },
+  { name: "Bog'ishamol hotel", city: "Samarqand", rooms: 23, since: "2026" },
 ];
 
 const CONTACT_STORAGE_KEY = "my-hotels-contact-form";
