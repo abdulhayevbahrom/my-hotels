@@ -147,7 +147,7 @@ function App() {
             <a href="#clients">Hotellar</a>
             <a href="#contact">Aloqa</a>
           </nav>
-          <a className="btn btn-solid" href="#contact">
+          <a className="btn btn-solid topbar-cta" href="#contact">
             Demo so'rash
           </a>
         </div>
